@@ -1,0 +1,92 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+      "@type": "WorkflowCollection",
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "78dd2266-d1ee-4a4d-9fa4-7c29ee003cf3",
+          "collection": "/api/3/workflow_collections/26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+          "steps": [
+            {
+              "uuid": "5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0a88faa4-18f6-43fa-83cf-22c3be49dde0",
+              "@type": "WorkflowStep",
+              "name": "Get Log Entries List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Google Cloud Logging",
+                "config": "",
+                "params": {
+                  "resourceNames": "",
+                  "filter": "",
+                  "orderBy": "Timestamp Ascending",
+                  "pageSize": 50,
+                  "pageToken": ""
+                },
+                "version": "1.0.0",
+                "connector": "google-cloud-logging",
+                "operation": "get_log_entries_list",
+                "operationTitle": "Get Log Entries List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve log entries that originated from a project/folder/organization/billing account from Google Cloud.",
+          "name": "Get Log Entries List",
+          "tag": "#Google Cloud Logging",
+          "recordTags": [
+            "Google",
+            "google-cloud-logging"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+          "routes": [
+            {
+              "uuid": "afb51f9b-7a0b-461a-b825-2c71c8d3b1ee",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Log Entries List",
+              "sourceStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+              "targetStep": "/api/3/workflow_steps/0a88faa4-18f6-43fa-83cf-22c3be49dde0"
+            }
+          ]
+        }
+      ],
+      "name": "Sample - Google Cloud Logging - 1.0.0",
+      "description": "Cloud Logging is a fully managed service that allows you to store, search, analyze, monitor, and alert on logging data and events from Google Cloud.",
+      "visible": true,
+      "recordTags": [
+        "Google",
+        "google-cloud-logging"
+      ]
+    }
+  ]
+}
