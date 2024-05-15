@@ -1,0 +1,195 @@
+{
+  "name": "google-cloud-logging",
+  "label": "Google Cloud Logging",
+  "version": "1.0.0",
+  "description": "Cloud Logging is a fully managed service that allows you to store, search, analyze, monitor, and alert on logging data and events from Google Cloud.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "category": "Logging",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "type": "text",
+        "name": "server",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "description": "The service-based URI to which you will connect and perform the automated operations.",
+        "tooltip": "The service-based URI to which you will connect and perform the automated operations.",
+        "value": "https://logging.googleapis.com"
+      },
+      {
+        "title": "Client ID",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "client_id",
+        "description": "Unique Client ID of the Google Cloud Logging that is used to create an authentication token required to access the Google Cloud Logging API.",
+        "tooltip": "Unique Client ID of the Google Cloud Logging that is used to create an authentication token required to access the Google Cloud Logging API."
+      },
+      {
+        "title": "Client Secret",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "client_secret",
+        "description": "Unique Client Secret of the Google Cloud Logging that is used to create an authentication token required to access the API. For information on how to get the client secret, see https://developers.google.com/identity/protocols/oauth2/web-server.",
+        "tooltip": "Unique Client Secret of the Google Cloud Logging that is used to create an authentication token required to access the API."
+      },
+      {
+        "title": "Authorization Code",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "code",
+        "tooltip": "The authorization code that you acquired during the authorization step. For more information, see the Accessing the Google Cloud Logging API section.",
+        "description": "The authorization code that you acquired during the authorization step. For more information, see the Accessing the Google Cloud Logging API section."
+      },
+      {
+        "title": "Redirect URL",
+        "description": "The redirect_uri of your app, where authentication responses can be sent and received by your app. It must exactly match one of the redirect_uri's you registered in the app registration portal.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "redirect_url",
+        "placeholder": "E.g. https://localhost/myapp",
+        "tooltip": "The redirect_uri of your app, where authentication responses can be sent and received by your app. It must exactly match one of the redirect_uri's you registered in the app registration portal."
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_log_entries_list",
+      "title": "Get Log Entries List",
+      "description": "Retrieve log entries that originated from a project/folder/organization/billing account from Google Cloud.",
+      "category": "investigation",
+      "annotation": "get_log_entries_list",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Resource Names",
+          "name": "resourceNames",
+          "description": "Specify the list of comma-separated resource names based on which you want to retrieve log entries from Google Cloud Logging.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the list of comma-separated resource names based on which you want to retrieve log entries from Google Cloud Logging.",
+          "placeholder": "e.g projects/<project_id> , organizations/<organization_id> , billingAccounts/<billing_account_id> , folders/<folder_id>"
+        },
+        {
+          "title": "Filter",
+          "name": "filter",
+          "description": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the locations retrieved from Google Cloud Logging.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the locations retrieved from Google Cloud Logging.",
+          "placeholder": "e.g. protoPayload.requestMetadata.callerIp = <ip_address> , insertId = <ID>"
+        },
+        {
+          "title": "Order By",
+          "description": "(Optional) Sorting order of the results, choose between Timestamp Ascending or Timestamp Descending. By default it set as Timestamp Ascending.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "orderBy",
+          "options": [
+            "Timestamp Ascending",
+            "Timestamp Descending"
+          ],
+          "value": "Timestamp Ascending",
+          "tooltip": "Note: We recommend setting the orderBy field to \"Timestamp Descending\" when listing recently ingested log entries. If not set, the default value of \"Timestamp Ascending\" may take a long time to fetch matching logs that are only recently ingested."
+        },
+        {
+          "title": "Page Size",
+          "description": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging. By default the value is 50 entries.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "pageSize",
+          "value": 50,
+          "tooltip": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging. By default the value is 50 entries."
+        },
+        {
+          "title": "Page Token",
+          "description": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "pageToken",
+          "tooltip": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls."
+        }
+      ],
+      "output_schema": {
+        "entries": [
+          {
+            "protoPayload": {
+              "@type": "",
+              "status": {},
+              "authenticationInfo": {
+                "principalEmail": ""
+              },
+              "requestMetadata": {
+                "callerIp": "",
+                "callerSuppliedUserAgent": "",
+                "requestAttributes": {},
+                "destinationAttributes": {}
+              },
+              "serviceName": "",
+              "methodName": "",
+              "authorizationInfo": [
+                {
+                  "resource": "",
+                  "permission": "",
+                  "granted": "",
+                  "resourceAttributes": {},
+                  "permissionType": ""
+                }
+              ],
+              "resourceName": ""
+            },
+            "insertId": "",
+            "resource": {
+              "type": "",
+              "labels": {
+                "project_id": "",
+                "method": "",
+                "service": ""
+              }
+            },
+            "timestamp": "",
+            "severity": "",
+            "logName": "",
+            "receiveTimestamp": ""
+          }
+        ],
+        "nextPageToken": ""
+      }
+    }
+  ]
+}
