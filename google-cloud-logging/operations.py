@@ -86,7 +86,39 @@ def get_log_entries_list(config, params, connector_info):
             "pageSize": params.get('pageSize'),
             "pageToken": params.get('pageToken')
         }
+        payload = check_payload(payload)
         response = api_request('POST', url, connector_info, config, data=json.dumps(payload))
+        return response
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+
+def get_exclusions_list(config, params, connector_info):
+    try:
+        url = '{0}/{1}/exclusions'.format(CLOUD_LOGGING_API_VERSION, params.get('resourceNames'))
+        payload = {
+            "pageSize": params.get('pageSize'),
+            "pageToken": params.get('pageToken')
+        }
+        payload = check_payload(payload)
+        response = api_request('GET', url, connector_info, config, params=payload)
+        return response
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+
+def get_sinks_list(config, params, connector_info):
+    try:
+        url = '{0}/{1}/sinks'.format(CLOUD_LOGGING_API_VERSION, params.get('resourceNames'))
+        payload = {
+            "pageSize": params.get('pageSize'),
+            "pageToken": params.get('pageToken'),
+            "filter": params.get('filter')
+        }
+        payload = check_payload(payload)
+        response = api_request('GET', url, connector_info, config, params=payload)
         return response
     except Exception as err:
         logger.exception("{0}".format(str(err)))
@@ -95,6 +127,8 @@ def get_log_entries_list(config, params, connector_info):
 
 def _check_health(config, connector_info):
     try:
+        if config.get('server') != 'https://logging.googleapis.com':
+            raise ConnectorError('Invalid Credentials')
         return check(config, connector_info)
     except Exception as err:
         logger.exception("{0}".format(str(err)))
@@ -102,5 +136,7 @@ def _check_health(config, connector_info):
 
 
 operations = {
-    'get_log_entries_list': get_log_entries_list
+    'get_log_entries_list': get_log_entries_list,
+    'get_exclusions_list': get_exclusions_list,
+    'get_sinks_list': get_sinks_list
 }
