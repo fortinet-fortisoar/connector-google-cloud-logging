@@ -100,12 +100,12 @@
         {
           "title": "Filter",
           "name": "filter",
-          "description": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the locations retrieved from Google Cloud Logging.",
+          "description": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the log entries retrieved from Google Cloud Logging.",
           "type": "text",
           "visible": true,
           "editable": true,
           "required": false,
-          "tooltip": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the locations retrieved from Google Cloud Logging.",
+          "tooltip": "(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the log entries retrieved from Google Cloud Logging.",
           "placeholder": "e.g. protoPayload.requestMetadata.callerIp = <ip_address> , insertId = <ID>"
         },
         {
@@ -186,6 +186,119 @@
             "severity": "",
             "logName": "",
             "receiveTimestamp": ""
+          }
+        ],
+        "nextPageToken": ""
+      }
+    },
+    {
+      "operation": "get_exclusions_list",
+      "title": "Get Exclusions List",
+      "description": "Retrieve exclusions that originated from a project/folder/organization/billing account from Google Cloud.",
+      "category": "investigation",
+      "annotation": "get_exclusions_list",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Parent Resource Name",
+          "name": "resourceNames",
+          "description": "Specify the resource name based on which you want to retrieve exclusions from Google Cloud Logging.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the resource name based on which you want to retrieve exclusions from Google Cloud Logging.",
+          "placeholder": "e.g projects/<project_id> , organizations/<organization_id> , billingAccounts/<billing_account_id> , folders/<folder_id>"
+        },
+        {
+          "title": "Page Size",
+          "description": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "pageSize",
+          "tooltip": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging."
+        },
+        {
+          "title": "Page Token",
+          "description": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "pageToken",
+          "tooltip": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls."
+        }
+      ],
+      "output_schema": {
+        "exclusions": [
+          {
+            "name": "",
+            "createTime": "",
+            "updateTime": ""
+          }
+        ],
+        "nextPageToken": ""
+      }
+    },
+    {
+      "operation": "get_sinks_list",
+      "title": "Get Sinks List",
+      "description": "Retrieve sinks that originated from a project/folder/organization/billing account from Google Cloud.",
+      "category": "investigation",
+      "annotation": "get_sinks_list",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Parent Resource Name",
+          "name": "resourceNames",
+          "description": "Specify the parent resource name based on which you want to retrieve sinks from Google Cloud Logging.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the parent resource name based on which you want to retrieve sinks from Google Cloud Logging.",
+          "placeholder": "e.g projects/<project_id> , organizations/<organization_id> , billingAccounts/<billing_account_id> , folders/<folder_id>"
+        },
+        {
+          "title": "Filter",
+          "name": "filter",
+          "description": "(Optional) Specify the filter using values of certain attributes, for example, in_scope(\"ALL\"), based on which you want to filter the sinks retrieved from Google Cloud Logging.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "(Optional) Specify the filter using values of certain attributes, for example, in_scope(\"ALL\"), based on which you want to filter the sinks retrieved from Google Cloud Logging.",
+          "placeholder": "e.g. in_scope(\"ALL\") , in_scope(\"ANCESTOR\") or in_scope(\"DEFAULT\")"
+        },
+        {
+          "title": "Page Size",
+          "description": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "pageSize",
+          "tooltip": "(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging."
+        },
+        {
+          "title": "Page Token",
+          "description": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "pageToken",
+          "tooltip": "(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls."
+        }
+      ],
+      "output_schema": {
+        "sinks": [
+          {
+            "name": "",
+            "destination": "",
+            "resourceName": ""
           }
         ],
         "nextPageToken": ""

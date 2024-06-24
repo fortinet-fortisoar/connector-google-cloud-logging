@@ -2,20 +2,173 @@
   "type": "workflow_collections",
   "data": [
     {
-      "uuid": "26f37ffd-7111-4e2d-8bab-f9ef095a4599",
       "@type": "WorkflowCollection",
+      "name": "Sample - Google Cloud Logging - 1.0.0",
+      "description": "Sample playbooks for \"Google Cloud Logging\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": null,
+      "uuid": "26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+      "id": 451,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [
+        "Google",
+        "google-cloud-logging"
+      ],
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "78dd2266-d1ee-4a4d-9fa4-7c29ee003cf3",
+          "triggerLimit": null,
+          "name": "Get Exclusions List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieve exclusions that originated from a project/folder/organization/billing account from Google Cloud.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1719160608,
           "collection": "/api/3/workflow_collections/26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/cedaf8d9-a7b4-472a-9b19-365e7b0131ca",
           "steps": [
             {
-              "uuid": "5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+              "@type": "WorkflowStep",
+              "name": "Get Exclusions List",
+              "description": null,
+              "arguments": {
+                "name": "Google Cloud Logging",
+                "config": "",
+                "params": {
+                  "pageSize": "",
+                  "pageToken": "",
+                  "resourceNames": "projects/sample-fsr-1234"
+                },
+                "version": "1.0.0",
+                "connector": "google-cloud-logging",
+                "operation": "get_exclusions_list",
+                "operationTitle": "Get Exclusions List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "5c3601b7-a16a-47e9-8ee3-d3d9f248de49"
+            },
+            {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "arguments": {
+                "route": "dc2f887a-9c60-4afe-a725-7417d08b4101",
+                "title": "Google Cloud Logging: Get Exclusions List",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
               "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "cedaf8d9-a7b4-472a-9b19-365e7b0131ca"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Exclusions List",
+              "targetStep": "/api/3/workflow_steps/5c3601b7-a16a-47e9-8ee3-d3d9f248de49",
+              "sourceStep": "/api/3/workflow_steps/cedaf8d9-a7b4-472a-9b19-365e7b0131ca",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "094e0162-4b77-4103-893c-604525619bd5"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "288938ea-25f2-45ee-9e19-5560e1198166",
+          "id": 5643,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Google",
+            "google-cloud-logging"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Log Entries List",
+          "aliasName": null,
+          "tag": "#Google Cloud Logging",
+          "description": "Retrieve log entries that originated from a project/folder/organization/billing account from Google Cloud.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Log Entries List",
+              "description": null,
+              "arguments": {
+                "name": "Google Cloud Logging",
+                "config": "",
+                "params": {
+                  "filter": "",
+                  "orderBy": "Timestamp Ascending",
+                  "pageSize": 50,
+                  "pageToken": "",
+                  "resourceNames": ""
+                },
+                "version": "1.0.0",
+                "connector": "google-cloud-logging",
+                "operation": "get_log_entries_list",
+                "operationTitle": "Get Log Entries List"
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0a88faa4-18f6-43fa-83cf-22c3be49dde0"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
               "arguments": {
                 "step_variables": {
                   "input": {
@@ -23,70 +176,150 @@
                   }
                 }
               },
-              "left": "20",
-              "top": "20",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
-            },
-            {
-              "uuid": "0a88faa4-18f6-43fa-83cf-22c3be49dde0",
-              "@type": "WorkflowStep",
-              "name": "Get Log Entries List",
-              "description": null,
               "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "group": null,
+              "uuid": "5d0533a4-4d6c-40af-8a93-b93b4c1aeabc"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Log Entries List",
+              "targetStep": "/api/3/workflow_steps/0a88faa4-18f6-43fa-83cf-22c3be49dde0",
+              "sourceStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "afb51f9b-7a0b-461a-b825-2c71c8d3b1ee"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "78dd2266-d1ee-4a4d-9fa4-7c29ee003cf3",
+          "id": 5642,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Google",
+            "google-cloud-logging"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Sinks List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieve sinks that originated from a project/folder/organization/billing account from Google Cloud.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1719160732,
+          "collection": "/api/3/workflow_collections/26f37ffd-7111-4e2d-8bab-f9ef095a4599",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/70c2b70a-e038-4af0-b051-5b02fa69ea0f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Sinks List",
+              "description": null,
               "arguments": {
                 "name": "Google Cloud Logging",
                 "config": "",
                 "params": {
-                  "resourceNames": "",
                   "filter": "",
-                  "orderBy": "Timestamp Ascending",
-                  "pageSize": 50,
-                  "pageToken": ""
+                  "pageSize": "",
+                  "pageToken": "",
+                  "resourceNames": "projects/sample-fsr-1234"
                 },
                 "version": "1.0.0",
                 "connector": "google-cloud-logging",
-                "operation": "get_log_entries_list",
-                "operationTitle": "Get Log Entries List"
+                "operation": "get_sinks_list",
+                "operationTitle": "Get Sinks List",
+                "pickFromTenant": false,
+                "step_variables": []
               },
-              "left": "188",
-              "top": "120",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "161d5254-2704-4ba9-a707-174e182d066b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "59e86621-9e9f-4be1-9b49-d42d4d26eaeb",
+                "title": "Google Cloud Logging: Get Sinks List",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "70c2b70a-e038-4af0-b051-5b02fa69ea0f"
             }
           ],
-          "triggerLimit": null,
-          "description": "Retrieve log entries that originated from a project/folder/organization/billing account from Google Cloud.",
-          "name": "Get Log Entries List",
-          "tag": "#Google Cloud Logging",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Sinks List",
+              "targetStep": "/api/3/workflow_steps/161d5254-2704-4ba9-a707-174e182d066b",
+              "sourceStep": "/api/3/workflow_steps/70c2b70a-e038-4af0-b051-5b02fa69ea0f",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "8ea57163-83fc-4a87-9833-bb08fbdd2f72"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "e8cdc395-c1dc-42a0-bbcb-cb94b6deaa02",
+          "id": 5644,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
           "recordTags": [
             "Google",
             "google-cloud-logging"
-          ],
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "parameters": [],
-          "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
-          "routes": [
-            {
-              "uuid": "afb51f9b-7a0b-461a-b825-2c71c8d3b1ee",
-              "@type": "WorkflowRoute",
-              "label": null,
-              "isExecuted": false,
-              "name": "Start-> Get Log Entries List",
-              "sourceStep": "/api/3/workflow_steps/5d0533a4-4d6c-40af-8a93-b93b4c1aeabc",
-              "targetStep": "/api/3/workflow_steps/0a88faa4-18f6-43fa-83cf-22c3be49dde0"
-            }
           ]
         }
-      ],
-      "name": "Sample - Google Cloud Logging - 1.0.0",
-      "description": "Cloud Logging is a fully managed service that allows you to store, search, analyze, monitor, and alert on logging data and events from Google Cloud.",
-      "visible": true,
-      "recordTags": [
-        "Google",
-        "google-cloud-logging"
       ]
     }
+  ],
+  "exported_tags": [
+    "Google",
+    "google-cloud-logging"
   ]
 }
