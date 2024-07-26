@@ -157,3 +157,43 @@ The `Sample - Google Cloud Logging - 1.0.0` playbook collection comes bundled wi
 - Get Sinks List
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection since the sample playbook collection gets deleted during connector upgrade and delete.
+
+#### Accessing the Google Cloud Logging API 
+
+Your application needs to be both authenticated and authorized to access the Google Cloud Logging API. The REST APIs of Google Cloud Logging is a service provided by Google Cloud Platform (GCP) that helps you manage your GCP resources across projects. It provides a unified interface for organizing, viewing, and controlling access to your cloud resources. 
+
+The following configuration parameters are required to authenticate the Google Cloud Logging connector with the Google Cloud Logging API. 
+
+   - Client ID 
+   - Client Secret 
+   - Redirect URI 
+
+The following configuration parameter is required to authorize the Google Cloud Logging connector with the Google Cloud Logging API. 
+
+   - Authorization Code 
+
+You can get the authentication token to access Google Cloud Logging APIs using the OAuth 2.0 method. For more information see, https://developers.google.com/identity/protocols/oauth2/web-server. 
+
+Following steps help secure the authentication and authorization codes used to access the Google Cloud Logging API: 
+
+1. Ensure that you have created a PROJECT in Google Cloud Platform in the Web Application section so that you can get your CLIENT_ID, CLIENT_SECRET, and REDIRECT_URI, i.e., you must register your application with Google Cloud Logging. For more information see, https://developers.google.com/adwords/api/docs/guides/authentication#webapp. 
+
+2. In the PROJECT, enable Cloud Logging API in APIs and Services. For more information see, https://support.google.com/googleapi/answer/6158841?hl=en&ref_topic=7013279.
+
+3. Make a note of these authentication codes. 
+
+4. In the Configurations tab of the connector, enter the authentication details in the following fields to authenticate the Google Cloud Logging connector with the Google Cloud Logging API. 
+
+   - In the Client ID field, enter the client ID 
+   - In the Client Secret field, enter the client secret 
+   - In the Redirect URL field, enter the redirect URI. By default, the redirect URI is set to https://localhost/myapp 
+     Now that you have the authentication codes, you can use them to generate the authorization code. 
+
+5. Copy the following URL into a browser and replace the CLIENT_ID and REDIRECT_URI with the client ID and redirect URI that are generated at the time of registering the application: 
+ https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/logging.read&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=REDIRECT_URI&client_id=CLIENT_ID 
+
+6. Enter the link and you will be automatically redirected to a link with the following structure: REDIRECT_URI?state=STATE&code=AUTH_CODE&scope=SCOPE. 
+
+7. Copy the AUTH_CODE (without the "code=" prefix), and in the Configurations tab of the connector, paste the AUTH_CODE in the Authorization Code field. 
+
+The process to access the Google Cloud Logging API is now complete. Google Cloud Logging API reference is available at: https://cloud.google.com/logging/docs/reference/v2/rest/v2/entries/list 
