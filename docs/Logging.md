@@ -158,7 +158,7 @@ The `Sample - Google Cloud Logging - 1.0.0` playbook collection comes bundled wi
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection since the sample playbook collection gets deleted during connector upgrade and delete.
 
-#### Accessing the Google Cloud Logging API 
+## Accessing the Google Cloud Logging API 
 
 Your application needs to be both authenticated and authorized to access the Google Cloud Logging API. The REST APIs of Google Cloud Logging is a service provided by Google Cloud Platform (GCP) that helps you manage your GCP resources across projects. It provides a unified interface for organizing, viewing, and controlling access to your cloud resources. 
 
