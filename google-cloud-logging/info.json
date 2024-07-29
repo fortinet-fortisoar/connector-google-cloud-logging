@@ -235,8 +235,10 @@
         "exclusions": [
           {
             "name": "",
+            "filter": "",
             "createTime": "",
-            "updateTime": ""
+            "updateTime": "",
+            "description": ""
           }
         ],
         "nextPageToken": ""
@@ -297,6 +299,17 @@
         "sinks": [
           {
             "name": "",
+            "filter": "",
+            "exclusions": [
+              {
+                "name": "",
+                "filter": "",
+                "createTime": "",
+                "updateTime": "",
+                "description": ""
+              }
+            ],
+            "updateTime": "",
             "destination": "",
             "resourceName": ""
           }

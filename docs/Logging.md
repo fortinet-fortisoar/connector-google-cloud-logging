@@ -52,7 +52,7 @@ The following automated operations can be included in playbooks and you can also
 ### operation: Get Log Entries List
 #### Input parameters
 <table border=1><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Resource Names</td><td>Specify the list of comma-separated resource names based on which you want to retrieve log entries from Google Cloud Logging.
-</td></tr><tr><td>Filter</td><td>(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = <ip_address>, based on which you want to filter the log entries retrieved from Google Cloud Logging.
+</td></tr><tr><td>Filter</td><td>(Optional) Specify the filter using values of certain attributes, for example, protoPayload.requestMetadata.callerIp = ip_address, based on which you want to filter the log entries retrieved from Google Cloud Logging.
 </td></tr><tr><td>Order By</td><td>(Optional) Sorting order of the results, choose between Timestamp Ascending or Timestamp Descending. By default it set as Timestamp Ascending.
 </td></tr><tr><td>Page Size</td><td>(Optional) Specify the maximum count of records that you want this operation to fetch from Google Cloud Logging. By default the value is 50 entries.
 </td></tr><tr><td>Page Token</td><td>(Optional) Specify a Page Token if a previous operation returned a partial result. If the previous response contains a nextPageToken element, the value of the nextPageToken element includes a Page Token parameter that specifies a starting point to use for subsequent calls.
@@ -121,8 +121,10 @@ The output contains the following populated JSON schema:
     "exclusions": [
         {
             "name": "",
+            "filter": "",
             "createTime": "",
-            "updateTime": ""
+            "updateTime": "",
+            "description": ""
         }
     ],
     "nextPageToken": ""
@@ -143,8 +145,18 @@ The output contains the following populated JSON schema:
     "sinks": [
         {
             "name": "",
+            "filter": "",
             "destination": "",
-            "resourceName": ""
+            "exclusions": [
+                {
+                    "name": "",
+                    "filter": "",
+                    "createTime": "",
+                    "updateTime": "",
+                    "description": ""
+                }
+            "resourceName": "",
+            "updateTime": ""
         }
     ],
     "nextPageToken": ""
@@ -176,7 +188,7 @@ You can get the authentication token to access Google Cloud Logging APIs using t
 
 Following steps help secure the authentication and authorization codes used to access the Google Cloud Logging API: 
 
-1. Ensure that you have created a PROJECT in Google Cloud Platform in the Web Application section so that you can get your CLIENT_ID, CLIENT_SECRET, and REDIRECT_URI, i.e., you must register your application with Google Cloud Logging. For more information see, https://developers.google.com/adwords/api/docs/guides/authentication#webapp. 
+1. Ensure that you have created a PROJECT in Google Cloud Platform in the Web Application section so that you can get your CLIENT_ID, CLIENT_SECRET, and REDIRECT_URI, i.e., you must register your application with Google Cloud Logging. For more information see, https://cloud.google.com/apis/docs/getting-started#creating_a_google_project. 
 
 2. In the PROJECT, enable Cloud Logging API in APIs and Services. For more information see, https://support.google.com/googleapi/answer/6158841?hl=en&ref_topic=7013279.
 
@@ -192,8 +204,8 @@ Following steps help secure the authentication and authorization codes used to a
 5. Copy the following URL into a browser and replace the CLIENT_ID and REDIRECT_URI with the client ID and redirect URI that are generated at the time of registering the application: 
  https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/logging.read&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=REDIRECT_URI&client_id=CLIENT_ID 
 
-6. Enter the link and you will be automatically redirected to a link with the following structure: REDIRECT_URI?state=STATE&code=AUTH_CODE&scope=SCOPE. 
+6. Enter the link and you will be automatically redirected to a link with the following structure: REDIRECT_URI?state=STATE&code=AUTH_CODE&scope=SCOPE.
 
 7. Copy the AUTH_CODE (without the "code=" prefix), and in the Configurations tab of the connector, paste the AUTH_CODE in the Authorization Code field. 
 
-The process to access the Google Cloud Logging API is now complete. Google Cloud Logging API reference is available at: https://cloud.google.com/logging/docs/reference/v2/rest/v2/entries/list 
+The process to access the Google Cloud Logging API is now complete. Google Cloud Logging API reference is available at: https://cloud.google.com/logging/docs/reference/v2/rest
